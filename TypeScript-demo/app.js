@@ -34,14 +34,34 @@ function Plus(a, b) {
 // } {
 // 	return {};
 // }
-function getInfo(id) {
-    return {
-        stdId: id,
-        stdName: 'lee',
-        age: 20,
-        gender: 'female',
-        course: 'typescript',
-        completed: true,
+// function getInfo(id: number): Student {
+// 	return {
+// 		stdId: id,
+// 		stdName: 'lee',
+// 		age: 20,
+// 		gender: 'female',
+// 		course: 'typescript',
+// 		completed: true,
+// 	};
+// }
+// function setInfo(student: Student): void {
+// 	student;
+// }
+var MyStudent = /** @class */ (function () {
+    function MyStudent() {
+        this.stdId = 1234;
+        this.stdName = 'lee';
+        this.age = 20;
+        this.gender = 'female';
+        this.course = 'typescript';
+        this.completed = true;
+    }
+    MyStudent.prototype.setName = function (name) {
+        this.stdName = name;
+        console.log(this.stdName);
     };
-}
-console.log(getInfo(5678));
+    return MyStudent;
+}());
+var myInstance = new MyStudent();
+myInstance.setName('kim');
+// console.log(getInfo(5678));
