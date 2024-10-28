@@ -1,67 +1,36 @@
-function logName(name) {
-    console.log(name);
-}
-logName('cho');
-var student = {
-    name: 'cho',
-    age: 20,
-    grade: function () {
-        console.log('A');
-    },
-};
-student.name = 'cho seung yeon';
-student.age = 30;
-//데이터 타입 명시
-var stdId = 1111;
-var stdName = 'lee';
-var age = 20;
-var gender = 'male';
-var course = 'TypeScript';
-var completed = false;
-// 함수의 데이터 타입 명시(매개변수, 리턴타입)
-function Plus(a, b) {
-    // void는 리턴문이 없는 함수
-    //return a + b;
-}
-// 리턴 타입 개별 정의
-// function getInfo(id: number): {
-// 	stdId: number;
-// 	stdName: string;
-// 	age: number;
-// 	gender: string;
-// 	course: string;
-// 	completed: boolean;
-// } {
-// 	return {};
-// }
-// function getInfo(id: number): Student {
-// 	return {
-// 		stdId: id,
-// 		stdName: 'lee',
-// 		age: 20,
-// 		gender: 'female',
-// 		course: 'typescript',
-// 		completed: true,
-// 	};
-// }
-// function setInfo(student: Student): void {
-// 	student;
-// }
-var MyStudent = /** @class */ (function () {
-    function MyStudent() {
-        this.stdId = 1234;
-        this.stdName = 'lee';
-        this.age = 20;
-        this.gender = 'female';
-        this.course = 'typescript';
-        this.completed = true;
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
     }
-    MyStudent.prototype.setName = function (name) {
-        this.stdName = name;
-        console.log(this.stdName);
-    };
-    return MyStudent;
-}());
-var myInstance = new MyStudent();
-myInstance.setName('kim');
-// console.log(getInfo(5678));
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
+var numbers = [1, 2, 3, 4, 5];
+var fruits = ['apple', 'banana', 'orange'];
+for (var i = 0; i < numbers.length; i++) {
+    console.log(numbers[i]);
+}
+for (var i = 0; i < fruits.length; i++) {
+    console.log(fruits[i]);
+}
+//배열의 유니온 타입
+var mixedArray = [1, 'two', 3, 'four', 5];
+for (var i = 0; i < mixedArray.length; i++) {
+    console.log(mixedArray[i]);
+}
+var infer = [1, 2, 3]; //타입 추론
+//읽기 전용
+var readOnlyArray = [1, 2, 3];
+//튜플 : 타입의 순서가 정해져 있음
+var greeting = [1, 'hello', true];
+for (var i = 0; i < greeting.length; i++) {
+    console.log(greeting[i]);
+}
+//spread 연산자
+var firstArray = [1, 2, 3];
+var secondArray = [4, 5, 6];
+__spreadArray(__spreadArray([], firstArray, true), secondArray, true).forEach(function (value) {
+    console.log(value);
+});
