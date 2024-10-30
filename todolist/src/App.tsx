@@ -3,6 +3,7 @@ import './App.css';
 import ClassCom from './ClassCom';
 import FuncCom from './FuncCom';
 import TodoList from './Todolist';
+import MapTest from './MapTest';
 
 // function App() {
 // 	return (
@@ -37,6 +38,7 @@ function App() {
 			<ClassCom></ClassCom>
 			<FuncCom></FuncCom>
 			<TodoList></TodoList>
+			<MapTest></MapTest>
 		</div>
 	);
 	// const port = undefined;
