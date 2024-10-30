@@ -1,5 +1,8 @@
 import React from 'react';
 import './App.css';
+import ClassCom from './ClassCom';
+import FuncCom from './FuncCom';
+import TodoList from './Todolist';
 
 // function App() {
 // 	return (
@@ -14,23 +17,26 @@ import './App.css';
 // }
 
 function App() {
-	let name = '리액트';
-	const style = {
-		backgroundColor: '#FFFFFF',
-		color: 'black',
-		fontSize: '24px',
-		fontWeight: 'bold',
-		padding: '20px',
-	};
+	// let name = '리액트';
+	// const style = {
+	// 	backgroundColor: '#FFFFFF',
+	// 	color: 'black',
+	// 	fontSize: '24px',
+	// 	fontWeight: 'bold',
+	// 	padding: '20px',
+	// };
 
 	return (
 		<div className="container">
-			<h1 className="test">
+			{/* <h1 className="test">
 				Hello,
 				{name === '리액트' ? <h1>Yes</h1> : <h1>No</h1>}!!
 			</h1>
 			<p style={style}>반갑습니다.</p>
-			{/*주석문 작성 */}
+			주석문 작성 */}
+			<ClassCom></ClassCom>
+			<FuncCom></FuncCom>
+			<TodoList></TodoList>
 		</div>
 	);
 	// const port = undefined;
