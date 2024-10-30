@@ -4,6 +4,7 @@ import ClassCom from './ClassCom';
 import FuncCom from './FuncCom';
 import TodoList from './Todolist';
 import MapTest from './MapTest';
+import Timer from './Timer';
 
 // function App() {
 // 	return (
@@ -39,6 +40,7 @@ function App() {
 			<FuncCom></FuncCom>
 			<TodoList></TodoList>
 			<MapTest></MapTest>
+			<Timer></Timer>
 		</div>
 	);
 	// const port = undefined;
