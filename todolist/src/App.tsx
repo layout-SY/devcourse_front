@@ -5,6 +5,7 @@ import FuncCom from './FuncCom';
 import TodoList from './Todolist';
 import MapTest from './MapTest';
 import Timer from './Timer';
+import MyWeather from './MyWeather';
 
 // function App() {
 // 	return (
@@ -41,6 +42,8 @@ function App() {
 			<TodoList></TodoList>
 			<MapTest></MapTest>
 			<Timer></Timer>
+			{/*사이에 위치한 "일기예보"는 children이라는 자식 요소 */}
+			<MyWeather weather="비">일기예보</MyWeather>
 		</div>
 	);
 	// const port = undefined;
