@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
+import TodoModal from './TodoModal';
 
 const TodoList: React.FC = () => {
 	const title: string = '오늘 할 일';
@@ -70,19 +71,22 @@ const TodoList: React.FC = () => {
 				<ul className="board">
 					{todos.map((todo, index) => {
 						return (
-							<li key={index}>
-								<input type="checkbox" onChange={() => handleCheckedChange(todo.id)}></input>
-								<span onClick={() => handleTodoClick(todo)}>
-									{todo.isChecked ? <del>{todo.text}</del> : todo.text}
-								</span>
-								<Button variant="primary" size="sm" onClick={() => removeTodo(todo.id)}>
-									삭제
-								</Button>
-							</li>
+							<div>
+								<li key={index}>
+									<input type="checkbox" onChange={() => handleCheckedChange(todo.id)}></input>
+									<span onClick={() => handleTodoClick(todo)}>
+										{todo.isChecked ? <del>{todo.text}</del> : todo.text}
+									</span>
+									<Button variant="primary" size="sm" onClick={() => removeTodo(todo.id)}>
+										삭제
+									</Button>
+								</li>
+							</div>
 						);
 					})}
 				</ul>
 			</div>
+			<TodoModal handleClose={handleCloseDetail} show={showDetail} todo={selectedTodo}></TodoModal>
 		</div>
 	);
 };
