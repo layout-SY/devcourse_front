@@ -5,7 +5,7 @@ type TloggerState = {
 	logArray: ILogItem[];
 };
 
-const initialState = {
+const initialState: TloggerState = {
 	logArray: [],
 };
 
