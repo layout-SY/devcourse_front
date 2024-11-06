@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { ILogItem } from '../../../types';
 import { BsFillPersonFill } from 'react-icons/bs';
 import { author, date, logItemWrap, message } from './LogItem.css';
@@ -8,7 +8,7 @@ type TLogItemProps = {
 };
 
 const LogItem: FC<TLogItemProps> = ({ logItem }) => {
-	let timeOffset = new Date(Date.now() - Number(logItem.logTimestamp));
+	const timeOffset = new Date(Date.now() - Number(logItem.logTimestamp));
 
 	const showOffsetTime = `${timeOffset.getMinutes() > 0 ? `${timeOffset.getMinutes()}m` : ''} ${
 		timeOffset.getSeconds() > 0 ? `${timeOffset.getSeconds()}s ago` : ''

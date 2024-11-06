@@ -76,12 +76,16 @@ const BoardList: FC<TBoardListProps> = ({ activeBoardId, setActiveBoardId }) => 
 			))}
 			<div className={addSection}>
 				{isFormOpen ? (
-					<SideForm inputRef={inputRef} setIsFormOpen={setIsFormOpen} onClick={handleLogOut} />
+					<SideForm inputRef={inputRef} setIsFormOpen={setIsFormOpen} />
 				) : (
 					<FiPlusCircle className={addButton} onClick={handleClick} />
 				)}
 
-				{isAuth ? <GoSignOut className={addButton} /> : <FiLogIn className={addButton} onClick={handleLogin} />}
+				{isAuth ? (
+					<GoSignOut className={addButton} onClick={handleLogOut} />
+				) : (
+					<FiLogIn className={addButton} onClick={handleLogin} />
+				)}
 			</div>
 		</div>
 	);

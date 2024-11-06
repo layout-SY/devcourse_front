@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { GrSubtract } from 'react-icons/gr';
 import Task from '../Task/Task';
 import ActionButton from '../ActionButton/ActionButton';
@@ -56,7 +56,7 @@ const List: FC<TListProps> = ({ list, boardId }) => {
 						</div>
 					))}
 					{provided.placeholder}
-					<ActionButton boardId={boardId} listId={list.listId} />
+					<ActionButton boardId={boardId} list={!!list} listId={list.listId} />
 				</div>
 			)}
 		</Droppable>

@@ -1,20 +1,10 @@
-import React, { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { FiX } from 'react-icons/fi';
 import { useTypedDispatch, useTypedSelector } from '../../hooks/redux';
 import { deleteTask, setModalActive, updateTask } from '../../store/slices/boardsSlice';
 import { v4 } from 'uuid';
 import { addLog } from '../../store/slices/loggerSlice';
-import {
-	buttons,
-	closeButton,
-	deleteButton,
-	header,
-	input,
-	modalWindow,
-	title,
-	updateButton,
-	wrapper,
-} from './EditModaL.css';
+import { buttons, closeButton, deleteButton, input, modalWindow, title, updateButton, wrapper } from './EditModaL.css';
 
 const EditModal = () => {
 	const dispatch = useTypedDispatch();
