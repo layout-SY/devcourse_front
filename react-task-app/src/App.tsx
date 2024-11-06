@@ -3,11 +3,15 @@ import './App.css';
 import { appContainer, board, buttons, deleteBoardButton, loggerButton } from './App.css.ts';
 import BoardList from './components/BoardList/BoardList.tsx';
 import ListsContainer from './components/ListsContainer/ListsContainer.tsx';
-import { useTypedSelector } from './hooks/redux.ts';
+import { useTypedDispatch, useTypedSelector } from './hooks/redux.ts';
 import EditModal from './components/EditModal/EditModal.tsx';
 import LoggerModal from './components/LoggerModal/LoggerModal.tsx';
+import { deleteBoard } from './store/slices/boardsSlice.ts';
+import { v4 } from 'uuid';
+import { addLog } from './store/slices/loggerSlice.ts';
 
 function App() {
+	const dispatch = useTypedDispatch();
 	const [isLoggerOpen, setIsLoggerOpen] = useState(false);
 	const [activeBoardId, setActiveBoardId] = useState('board-0');
 	const modalActive = useTypedSelector((state) => state.board.modalActive);
@@ -16,6 +20,35 @@ function App() {
 	const getActiveBoard = boards.filter((board) => board.boardId === activeBoardId)[0];
 
 	const lists = getActiveBoard.lists;
+
+	const handleDeleteBoard = () => {
+		if (boards.length > 1) {
+			dispatch(
+				deleteBoard({
+					boardId: getActiveBoard.boardId,
+				})
+			);
+
+			dispatch(
+				addLog({
+					logId: v4(),
+					logAuthor: 'Admin',
+					logMessage: `게시판 삭제 : ${getActiveBoard.boardName}`,
+					logTimestamp: String(Date.now()),
+				})
+			);
+
+			const newIndexToSet = () => {
+				const indexToBeDeleted = boards.findIndex((board) => board.boardId === activeBoardId);
+
+				return indexToBeDeleted === 0 ? indexToBeDeleted + 1 : indexToBeDeleted - 1;
+			};
+
+			setActiveBoardId(boards[newIndexToSet()].boardId);
+		} else {
+			alert(`최소 게시판 개수는 한 개입니다.`);
+		}
+	};
 
 	return (
 		<div className={appContainer}>
@@ -27,7 +60,9 @@ function App() {
 				<ListsContainer lists={lists} boardId={getActiveBoard.boardId} />
 			</div>
 			<div className={buttons}>
-				<button className={deleteBoardButton}>이 게시판 삭제하기</button>
+				<button onClick={handleDeleteBoard} className={deleteBoardButton}>
+					이 게시판 삭제하기
+				</button>
 				<button
 					onClick={() => {
 						setIsLoggerOpen(!isLoggerOpen);
