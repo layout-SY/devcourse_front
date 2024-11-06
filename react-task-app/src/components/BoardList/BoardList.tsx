@@ -5,9 +5,10 @@ import { FiLogIn, FiPlusCircle } from 'react-icons/fi';
 import { addButton, addSection, boardItem, boardItemActive, container, title } from './BoardList.css';
 import clsx from 'clsx';
 import { GoSignOut } from 'react-icons/go';
-import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from 'firebase/auth';
 import app from '../../firebase';
-import { setUser } from '../../store/slices/userSlice';
+import { removeUser, setUser } from '../../store/slices/userSlice';
+import { useAuth } from '../../hooks/useAuth';
 
 type TBoardListProps = {
 	activeBoardId: string;
@@ -21,6 +22,8 @@ const BoardList: FC<TBoardListProps> = ({ activeBoardId, setActiveBoardId }) => 
 	const auth = getAuth(app);
 	const provider = new GoogleAuthProvider();
 	const dispatch = useTypedDispatch();
+
+	const { isAuth } = useAuth();
 
 	const handleClick = () => {
 		setIsFormOpen(!isFormOpen);
@@ -40,6 +43,14 @@ const BoardList: FC<TBoardListProps> = ({ activeBoardId, setActiveBoardId }) => 
 						id: userCredential.user.uid,
 					})
 				);
+			})
+			.catch((e) => e);
+	};
+
+	const handleLogOut = () => {
+		signOut(auth)
+			.then(() => {
+				dispatch(removeUser());
 			})
 			.catch((e) => e);
 	};
@@ -65,13 +76,12 @@ const BoardList: FC<TBoardListProps> = ({ activeBoardId, setActiveBoardId }) => 
 			))}
 			<div className={addSection}>
 				{isFormOpen ? (
-					<SideForm inputRef={inputRef} setIsFormOpen={setIsFormOpen} />
+					<SideForm inputRef={inputRef} setIsFormOpen={setIsFormOpen} onClick={handleLogOut} />
 				) : (
 					<FiPlusCircle className={addButton} onClick={handleClick} />
 				)}
 
-				<GoSignOut className={addButton} />
-				<FiLogIn className={addButton} onClick={handleLogin} />
+				{isAuth ? <GoSignOut className={addButton} /> : <FiLogIn className={addButton} onClick={handleLogin} />}
 			</div>
 		</div>
 	);
