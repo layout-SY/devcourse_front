@@ -3,6 +3,7 @@ import { IList } from '../../types';
 import List from '../List/List';
 import ActionButton from '../ActionButton/ActionButton';
 import { listsContainer } from './ListsContainer.css';
+import { DragDropContext } from 'react-beautiful-dnd';
 
 type TListsContainerProps = {
 	boardId: string;
